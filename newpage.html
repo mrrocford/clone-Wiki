@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entry_name }}
+{% endblock %}
+
+{% block body %}
+<h1>New Page</h1>
+<label for="{% url 'encyclopedia:edit'%}"></label>
+    <form action="{%url 'encyclopedia:new'%}" method="post">
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <input type="submit" value="Save text">
+        {% if edit %}
+        <input type="hidden" name = "edit" value="True">
+        {% endif %}
+    </form>
+{% endblock %}
